@@ -1,0 +1,84 @@
+/* ToggleStatus.css */
+
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Sora', sans-serif;
+  transition: background 0.25s ease, opacity 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.toggle-btn:hover:not(:disabled) {
+  transform: scale(1.04);
+}
+
+.toggle-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* Open state — green */
+.toggle-btn--open {
+  background: #22c55e;
+  color: #fff;
+}
+
+.toggle-btn--open:hover:not(:disabled) {
+  background: #16a34a;
+}
+
+/* Closed state — red */
+.toggle-btn--closed {
+  background: #ef4444;
+  color: #fff;
+}
+
+.toggle-btn--closed:hover:not(:disabled) {
+  background: #dc2626;
+}
+
+/* Loading state */
+.toggle-btn--loading {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Dot indicator */
+.toggle-btn__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  flex-shrink: 0;
+}
+
+.toggle-btn--open .toggle-btn__dot {
+  background: #fff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
+  animation: pulse-green 1.8s ease-in-out infinite;
+}
+
+.toggle-btn--closed .toggle-btn__dot {
+  background: rgba(255, 255, 255, 0.5);
+  animation: none;
+}
+
+.toggle-btn--loading .toggle-btn__dot {
+  animation: none;
+}
+
+.toggle-btn__label {
+  line-height: 1;
+}
+
+/* Pulsing dot when open */
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35); }
+  50%       { box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.15); }
+}

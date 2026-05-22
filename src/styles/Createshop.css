@@ -1,0 +1,484 @@
+/* ══════════════════════════════════════
+   CREATE SHOP PAGE
+══════════════════════════════════════ */
+.cs-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.cs-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+.cs-orb1 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(59,130,246,0.13), transparent 70%);
+  top: -80px;
+  right: -60px;
+}
+.cs-orb2 {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(99,102,241,0.09), transparent 70%);
+  bottom: -60px;
+  left: -40px;
+}
+
+.cs-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--glass);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--border2);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.45);
+  position: relative;
+  z-index: 1;
+}
+
+.cs-header {
+  padding: 28px 28px 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.cs-header-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+}
+
+.cs-header h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0;
+}
+
+.cs-header p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 3px 0 0;
+}
+
+.cs-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 28px;
+}
+
+.cs-body {
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Field label */
+.cs-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-family: 'Sora', sans-serif;
+  margin-bottom: 7px;
+}
+
+.cs-field {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input */
+.cs-input-wrap {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.cs-input-wrap:focus-within {
+  border-color: rgba(59, 130, 246, 0.5);
+  background: rgba(59, 130, 246, 0.06);
+}
+.cs-input-wrap input,
+.cs-input-wrap select {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  padding: 12px 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.cs-input-wrap input::placeholder { color: var(--subtle); }
+.cs-input-wrap select option {
+  background: #1e293b;
+  color: #f1f5f9;
+  font-size: 14px;
+}
+
+.cs-input-icon {
+  font-size: 16px;
+  opacity: 0.4;
+  flex-shrink: 0;
+  margin-right: 8px;
+}
+
+/* Select with custom arrow */
+.cs-select-wrap {
+  position: relative;
+}
+.cs-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--muted);
+  pointer-events: none;
+}
+
+/* Location button */
+.cs-loc-btn {
+  width: 100%;
+  padding: 13px;
+  border-radius: 12px;
+  background: rgba(34, 197, 94, 0.10);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  color: var(--green2);
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.cs-loc-btn:hover:not(:disabled) {
+  background: rgba(34, 197, 94, 0.18);
+  border-color: rgba(34, 197, 94, 0.4);
+}
+.cs-loc-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Coords display */
+.cs-coords {
+  display: flex;
+  gap: 16px;
+  background: rgba(34, 197, 94, 0.06);
+  border: 1px solid rgba(34, 197, 94, 0.18);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-top: 10px;
+}
+.cs-coord {
+  font-size: 12px;
+  color: var(--muted);
+}
+.cs-coord span {
+  display: block;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--green2);
+  margin-top: 2px;
+}
+
+/* Image counter badge in label */
+.cs-img-counter {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'Sora', sans-serif;
+  color: #60a5fa;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: 20px;
+  padding: 1px 7px;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+
+/* ── Image Upload ─────────────────────────────── */
+.cs-upload-btn {
+  width: 100%;
+  padding: 13px;
+  border-radius: 12px;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px dashed rgba(59, 130, 246, 0.35);
+  color: #60a5fa;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.cs-upload-btn:hover {
+  background: rgba(59, 130, 246, 0.14);
+  border-color: rgba(59, 130, 246, 0.55);
+}
+
+/* Image preview grid */
+.cs-img-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.cs-img-thumb {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.cs-img-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* uploading / error overlay */
+.cs-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cs-img-error { font-size: 20px; }
+
+/* spinner */
+.cs-img-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: csSpinner 0.7s linear infinite;
+}
+@keyframes csSpinner {
+  to { transform: rotate(360deg); }
+}
+
+/* remove button */
+.cs-img-remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.65);
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+.cs-img-remove:hover { background: rgba(239,68,68,0.8); }
+
+/* done tick */
+.cs-img-done {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: rgba(34,197,94,0.85);
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #fff;
+}
+
+/* Toggle row */
+.cs-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+.cs-toggle-title {
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 500;
+}
+.cs-toggle-sub {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.cs-toggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.cs-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+.cs-slider {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.cs-slider::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: all 0.2s;
+}
+.cs-toggle input:checked + .cs-slider {
+  background: rgba(34, 197, 94, 0.30);
+  border-color: rgba(34, 197, 94, 0.5);
+}
+.cs-toggle input:checked + .cs-slider::after {
+  transform: translateX(20px);
+  background: #22c55e;
+}
+
+/* Submit button */
+.cs-submit-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+  border: none;
+  color: #fff;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.15s, box-shadow 0.2s, background 0.3s;
+  margin-top: 4px;
+}
+.cs-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+}
+.cs-submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+.cs-submit-btn.cs-submitted {
+  background: linear-gradient(135deg, #15803d, #22c55e);
+}
+
+/* Cover badge — pehli image pe */
+.cs-img-main-badge {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  background: rgba(59,130,246,0.85);
+  color: #fff;
+  font-family: 'Sora', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Hint text under image grid */
+.cs-img-hint {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* Progress bar */
+.cs-progress-wrap {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.cs-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #1d4ed8, #3b82f6);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+/* Error message */
+.cs-error {
+  font-size: 12px;
+  color: #f87171;
+  background: rgba(239,68,68,0.08);
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 0;
+  text-align: center;
+}
