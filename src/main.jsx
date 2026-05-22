@@ -4,10 +4,10 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "./context/ThemeContext";
 import "./index.css"        // base variables + animations
-import "./styles/navbar.css"   // navbar + drawer
+import "./styles/Navbar.css"   // navbar + drawer
 import "./styles/landing.css"  // hero, features, etc
-import "./styles/sidebar.css"  // map sidebar
-import "./styles/createshop.css" // create shop form
+import "./styles/Sidebar.css"  // map sidebar
+import "./styles/Createshop.css" // create shop form
 import "./styles/LoginRegister.css"
 import "./styles/AddCategory.css"
 import "./styles/Auth.css"
