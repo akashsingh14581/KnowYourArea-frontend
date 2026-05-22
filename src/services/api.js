@@ -3,7 +3,7 @@ import axios from "axios";
 console.log("🟢 API FILE LOADED");
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://knowyourarea-backend-1.onrender.com/api",
   withCredentials: true, // cookies automatically send hongi
 });
 
